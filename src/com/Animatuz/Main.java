@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        printWelcomeMessage();
+        System.out.println("Введите по очереди V1,V2,a1,a2,S");
 
         double firstCarSpeed = readVariable();
         double secondCarSpeed = readVariable();
@@ -16,18 +16,6 @@ public class Main {
         double resultTime = calcTime(firstCarSpeed, secondCarSpeed, firstCarAccelerate, secondCarAccelerate, distance);
 
         printResult(firstCarSpeed, secondCarSpeed, firstCarAccelerate, secondCarAccelerate, distance, resultTime);
-
-    }
-
-    static void printWelcomeMessage() {
-
-        System.out.println("Введите по очереди V1,V2,a1,a2,S");
-
-    }
-
-    static void printErrorMessage() {
-
-        System.out.println("Ошибка!");
 
     }
 
@@ -54,7 +42,7 @@ public class Main {
 
         } else {
 
-            printErrorMessage();
+            System.out.println("Ошибка!");
 
         }
 
