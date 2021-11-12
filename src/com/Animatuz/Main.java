@@ -32,17 +32,17 @@ public class Main {
         return (-(firstCarSpeed + secondCarSpeed) + Math.sqrt(Math.pow((firstCarSpeed + secondCarSpeed), 2) + (firstCarAccelerate + secondCarAccelerate) * 2 * distance) / (firstCarAccelerate + secondCarAccelerate));
     }
 
-    static void printResult(double firstCarSpeed, double secondCarSpeed, double firstCarAccelerate, double secondCarAccelerate, double distance, double time) {
+    static void printResult(double firstCarSpeed, double secondCarSpeed, double firstCarAccelerate, double secondCarAccelerate, double distance, double resultTime) {
 
-        if (time >= 0) {
+        if (resultTime >= 0) {
 
             System.out.println(" Скорость первой машины=" + firstCarSpeed + " Скорость второй машины=" + secondCarSpeed + " Ускорение первой машины=" + firstCarAccelerate + " Ускорение второй машины=" + secondCarAccelerate + " Пройденный путь=" + distance);
             System.out.print("Время = ");
-            System.out.println(time);
+            System.out.println(resultTime);
 
         } else {
 
-            System.out.println("Ошибка!");
+            System.out.println("Ошибка! Переменные введены неверно. Все значения должны быть больше 0.");
 
         }
 
