@@ -6,8 +6,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        double resultTime;
-
         printWelcomeMessage();
 
         double firstCarSpeed = readVariable();
@@ -15,8 +13,8 @@ public class Main {
         double firstCarAccelerate = readVariable();
         double secondCarAccelerate = readVariable();
         double distance = readVariable();
+        double resultTime = calcTime(firstCarSpeed, secondCarSpeed, firstCarAccelerate, secondCarAccelerate, distance);
 
-        resultTime = calcTime(firstCarSpeed, secondCarSpeed, firstCarAccelerate, secondCarAccelerate, distance);
         printResult(firstCarSpeed, secondCarSpeed, firstCarAccelerate, secondCarAccelerate, distance, resultTime);
 
     }
