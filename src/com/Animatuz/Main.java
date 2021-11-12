@@ -1,50 +1,54 @@
 package com.Animatuz;
 
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Введите по очереди V1,V2,a1,a2,S");
+        Locale.setDefault(Locale.ROOT);
 
-        double firstCarSpeed = readVariable();
-        double secondCarSpeed = readVariable();
-        double firstCarAccelerate = readVariable();
-        double secondCarAccelerate = readVariable();
-        double distance = readVariable();
-        double resultTime = calcTime(firstCarSpeed, secondCarSpeed, firstCarAccelerate, secondCarAccelerate, distance);
+        double firstCarSpeed = readVariable("скорость первой машины (м/с): ");
+        double secondCarSpeed = readVariable("скорость второй машины (м/с): ");
+        double firstCarAccelerate = readVariable("ускорение первой машины (м/с^2): ");
+        double secondCarAccelerate = readVariable("ускорение второй машины (м/с^2): ");
+        double distance = readVariable("расстояние (м): ");
 
-        printResult(firstCarSpeed, secondCarSpeed, firstCarAccelerate, secondCarAccelerate, distance, resultTime);
+        double time = findTime(firstCarSpeed, secondCarSpeed, firstCarAccelerate, secondCarAccelerate, distance);
+
+        printResult(time);
 
     }
 
-    static double readVariable() {
-
+    static double readVariable(String dataType) {
+        System.out.print("Введите " + dataType);
         Scanner scanner = new Scanner(System.in);
-
-        return scanner.nextDouble();
-
-    }
-
-    static double calcTime(double firstCarSpeed, double secondCarSpeed, double firstCarAccelerate, double secondCarAccelerate, double distance) {
-
-        return (-(firstCarSpeed + secondCarSpeed) + Math.sqrt(Math.pow((firstCarSpeed + secondCarSpeed), 2) + (firstCarAccelerate + secondCarAccelerate) * 2 * distance) / (firstCarAccelerate + secondCarAccelerate));
-    }
-
-    static void printResult(double firstCarSpeed, double secondCarSpeed, double firstCarAccelerate, double secondCarAccelerate, double distance, double resultTime) {
-
-        if (resultTime >= 0) {
-
-            System.out.println(" Скорость первой машины=" + firstCarSpeed + " Скорость второй машины=" + secondCarSpeed + " Ускорение первой машины=" + firstCarAccelerate + " Ускорение второй машины=" + secondCarAccelerate + " Пройденный путь=" + distance);
-            System.out.print("Время = ");
-            System.out.println(resultTime);
-
-        } else {
-
-            System.out.println("Ошибка! Переменные введены неверно. Значение S должно быть больше 0");
-
+        double value = scanner.nextDouble();
+        if (value < 0) {
+            System.out.println("Ошибка! Значение не может быть отрицательным.");
+            return readVariable(dataType);
         }
-
+        return value;
     }
+
+    static double findTime(double v1, double v2, double a1, double a2, double s) {
+        double sumSpeeds = v1 + v2, sumAccelerates = a1 + a2;
+        if (v1 == 0 && v2 == 0 && a1 == 0 && a2 == 0) {
+            return -1;
+        } else if (a1 == 0 && a2 == 0) {
+            return s / (v1 + v2);
+        } else {
+            return (Math.sqrt(Math.pow(sumSpeeds, 2) + 2 * sumAccelerates * s) - sumSpeeds) / sumAccelerates;
+        }
+    }
+
+    static void printResult(double time) {
+        if (time == -1) {
+            System.out.println("Ошибка! Согласно введённым данным машины никогда не встретятся.");
+        } else {
+            System.out.println("Время (с): " + time);
+        }
+    }
+
 }
